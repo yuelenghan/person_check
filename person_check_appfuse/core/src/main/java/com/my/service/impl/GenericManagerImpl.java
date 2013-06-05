@@ -109,8 +109,8 @@ public class GenericManagerImpl<T, PK extends Serializable> implements GenericMa
      * <p/>
      * Search implementation using Hibernate Search.
      */
-    @SuppressWarnings("unchecked")
-    public List<T> search(String q, Class clazz) {
+    @SuppressWarnings("rawtypes")
+	public List<T> search(String q, Class clazz) {
         if (q == null || "".equals(q.trim())) {
             return getAll();
         }

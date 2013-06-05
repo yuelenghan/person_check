@@ -1,14 +1,20 @@
 package com.my.dao.hibernate;
 
-import com.my.model.Unit;
-import com.my.dao.UnitDao;
-import com.my.dao.hibernate.GenericDaoHibernate;
+import java.util.List;
+import java.util.Set;
+
 import org.springframework.stereotype.Repository;
 
-@Repository("unitDao")
-public class UnitDaoHibernate extends GenericDaoHibernate<Unit, Long> implements UnitDao {
+import com.my.dao.UnitDao;
+import com.my.model.Team;
+import com.my.model.Unit;
 
-    public UnitDaoHibernate() {
-        super(Unit.class);
-    }
+@Repository("unitDao")
+public class UnitDaoHibernate extends GenericDaoHibernate<Unit, Long> implements
+		UnitDao {
+	
+	public UnitDaoHibernate() {
+		super(Unit.class);
+	}
+	
 }

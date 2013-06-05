@@ -13,6 +13,8 @@ import com.my.service.UnitManager;
 import com.opensymphony.xwork2.Preparable;
 
 public class PersonAction extends BaseAction implements Preparable {
+	private static final long serialVersionUID = 5763725857060183008L;
+	
 	private PersonManager personManager;
 	private List<Person> persons;
 	private Person person;
@@ -85,7 +87,7 @@ public class PersonAction extends BaseAction implements Preparable {
 			person = new Person();
 		}
 		
-		units = unitManager.getAll();
+		units = unitManager.getAllAndTeams();
 
 		return SUCCESS;
 	}

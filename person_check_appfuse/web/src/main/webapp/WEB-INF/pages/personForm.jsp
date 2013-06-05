@@ -25,27 +25,28 @@
 		<s:hidden key="person.id" />
 		<s:textfield key="person.name" required="true" maxlength="200" />
 		<s:textfield key="person.age" required="false" maxlength="255" />
-		
-		<s:select list="#{getText('') }"/>
-		
+
+		<s:select key="person.sex"
+			list="#{getText('person.sex.male'):getText('person.sex.male'),getText('person.sex.female'):getText('person.sex.female') }" />
+
 		<s:textfield key="person.gpsCard" required="false" maxlength="200" />
 		<s:textfield key="person.idCard" required="true" maxlength="20" />
 		<s:checkbox key="person.ifBeon" theme="css_xhtml" />
 		<s:checkbox key="person.ifPic" theme="css_xhtml" />
 		<s:textfield key="person.job" required="false" maxlength="200" />
 		<s:textfield key="person.lightCard" required="false" maxlength="200" />
-		
+
 		<s:textfield key="person.normalTime" required="true" maxlength="255" />
 		<s:textfield key="person.politicLevel" required="false"
 			maxlength="200" />
-		
+
 		<s:checkbox key="person.specType" theme="css_xhtml" />
 		<s:textfield key="person.workCard" required="true" maxlength="200" />
 		<s:textfield key="person.workType" required="false" maxlength="200" />
 
 		<s:doubleselect key="person.unit" name="person.unit.id" list="units"
 			listKey="id" listValue="name" doubleList="top.getTeams()"
-			doubleName="person.team.id" doubleListKey="id" doubleListValue="name"/>
+			doubleName="person.team.id" doubleListKey="id" doubleListValue="name" />
 
 		<div id="actions" class="form-actions">
 			<s:submit type="button" cssClass="btn btn-primary" method="save"

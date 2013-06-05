@@ -5,8 +5,6 @@ import com.my.model.BaseObject;
 import org.hibernate.search.annotations.DocumentId;
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Indexed;
-import org.hibernate.search.annotations.IndexedEmbedded;
-
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.CascadeType;
@@ -19,9 +17,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-
 import javax.xml.bind.annotation.XmlRootElement;
 
 import java.io.Serializable;
@@ -31,6 +26,8 @@ import java.io.Serializable;
 @Indexed
 @XmlRootElement
 public class Unit extends BaseObject implements Serializable {
+	private static final long serialVersionUID = 1325824700634157497L;
+	
 	private Long id;
 	private String name;
 	private Set<Team> teams = new HashSet<Team>(0);
@@ -57,7 +54,7 @@ public class Unit extends BaseObject implements Serializable {
 		this.name = name;
 	}
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "unit")
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "unit")
 	public Set<Team> getTeams() {
 		return this.teams;
 	}
@@ -66,7 +63,7 @@ public class Unit extends BaseObject implements Serializable {
 		this.teams = teams;
 	}
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "unit")
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "unit")
 	public Set<Person> getPersons() {
 		return this.persons;
 	}

@@ -1,10 +1,7 @@
 package com.my.service.impl;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.Set;
 
 import javax.jws.WebService;
 
@@ -21,21 +18,22 @@ import com.my.service.UnitManager;
 public class UnitManagerImpl extends GenericManagerImpl<Unit, Long> implements
 		UnitManager {
 	UnitDao unitDao;
-
+	
 	@Autowired
 	public UnitManagerImpl(UnitDao unitDao) {
 		super(unitDao);
 		this.unitDao = unitDao;
 	}
-
+	
 	@Override
-	public Map<Unit, Collection<Team>> getUnitAndTeam() {
-		Map<Unit, Collection<Team>> unitAndTeam = new HashMap<Unit, Collection<Team>>();
-		
-		List<Unit> units = unitDao.getAll();
-		for (Unit unit : units) {
-			unitAndTeam.put(unit, unit.getTeams());
+	public List<Unit> getAllAndTeams() {
+		List<Unit> list = this.getAll();
+		for (Unit unit : list) {
+			Set<Team> teams = unit.getTeams();
+			for (Team team : teams) {
+			}
 		}
-		return unitAndTeam;
+		return list;
 	}
+	
 }

@@ -1,6 +1,6 @@
 package com.my.dao;
 
-import com.my.dao.GenericDao;
+import java.util.List;
 
 import com.my.model.Unit;
 

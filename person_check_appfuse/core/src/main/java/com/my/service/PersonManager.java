@@ -9,4 +9,5 @@ import javax.jws.WebService;
 @WebService
 public interface PersonManager extends GenericManager<Person, Long> {
     
+	public List<Person> getAllAndUnitsTeams();
 }

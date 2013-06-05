@@ -20,6 +20,7 @@ import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.queryParser.ParseException;
 import org.apache.lucene.util.Version;
+import org.hibernate.FetchMode;
 import org.hibernate.HibernateException;
 import org.hibernate.IdentifierLoadAccess;
 import org.hibernate.Query;
@@ -108,7 +109,6 @@ public class GenericDaoHibernate<T, PK extends Serializable> implements GenericD
     /**
      * {@inheritDoc}
      */
-    @SuppressWarnings("unchecked")
     public List<T> getAllDistinct() {
         Collection<T> result = new LinkedHashSet<T>(getAll());
         return new ArrayList<T>(result);
@@ -117,7 +117,8 @@ public class GenericDaoHibernate<T, PK extends Serializable> implements GenericD
     /**
      * {@inheritDoc}
      */
-    public List<T> search(String searchTerm) throws SearchException {
+    @SuppressWarnings("unchecked")
+	public List<T> search(String searchTerm) throws SearchException {
         Session sess = getSession();
         FullTextSession txtSession = Search.getFullTextSession(sess);
 
@@ -180,7 +181,8 @@ public class GenericDaoHibernate<T, PK extends Serializable> implements GenericD
     /**
      * {@inheritDoc}
      */
-    public void remove(PK id) {
+    @SuppressWarnings("unchecked")
+	public void remove(PK id) {
         Session sess = getSession();
         IdentifierLoadAccess byId = sess.byId(persistentClass);
         T entity = (T) byId.load(id);
@@ -217,8 +219,9 @@ public class GenericDaoHibernate<T, PK extends Serializable> implements GenericD
         HibernateSearchTools.reindexAll(async, getSessionFactory().getCurrentSession());
     }
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public List queryHql(String hql) {
+	public List<T> queryHql(String hql) {
 		Session sess = getSession();
 		return sess.createQuery(hql).list();
 	}

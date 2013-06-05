@@ -5,8 +5,6 @@ import com.my.model.BaseObject;
 import org.hibernate.search.annotations.DocumentId;
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Indexed;
-import org.hibernate.search.annotations.IndexedEmbedded;
-
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.CascadeType;
@@ -21,9 +19,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-
 import javax.xml.bind.annotation.XmlRootElement;
 
 import java.io.Serializable;
@@ -33,6 +28,8 @@ import java.io.Serializable;
 @Indexed
 @XmlRootElement
 public class Team extends BaseObject implements Serializable {
+	private static final long serialVersionUID = -4994250528118843898L;
+	
 	private Long id;
 	private Unit unit;
 	private String name;
@@ -49,7 +46,7 @@ public class Team extends BaseObject implements Serializable {
 		this.id = id;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "unit", nullable = false)
 	public Unit getUnit() {
 		return this.unit;
